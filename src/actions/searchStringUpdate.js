@@ -6,7 +6,6 @@ export default (newSearchString) => {
     type : 'updateSearchString',
     payload : {
                searchString : newSearchString,
-               info   : []
     }
   }
 
