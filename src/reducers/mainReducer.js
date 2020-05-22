@@ -3,8 +3,9 @@ import searchReducer from "./searchReducer";
 import nowPlaying from "./nowPlayingReducer";
 
 const mainReducer = combineReducers({
-  searchString : searchReducer,
+  searchedMovies : searchReducer,
   nowPlayingList : nowPlaying
+ // searchedMovies : 
 
 })
 

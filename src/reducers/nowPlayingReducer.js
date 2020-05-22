@@ -1,12 +1,8 @@
-const someFakeData = 
-  [{name : 'Terminator',
-  release_date :'1986'},
-  { 
-    name : 'Forrest Gump',
-    release_date : '1996'
-}]
-
 
 export default (state = [], action) => {
+  console.log("nowPlaying", action)
+  if (action.type==='NOW_PLAYING') {
+    return action.nowPlayingList
+  }
   return state
 }

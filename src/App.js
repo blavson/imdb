@@ -16,6 +16,7 @@ import MovieInfo from './components/MovieInfo'
 import SearchPage from './components/SearchPage'
 import NowPlaying from './components/NowPlaying';
 
+
 class App extends Component {
 
   constructor () {
@@ -31,13 +32,17 @@ class App extends Component {
     this.setState({
       search_phrase : s
     })
-     this.props.history.push(`/search/${s}`)
   }
 
   render() {
   return ( <div>
-    <NavBar />
-    <SearchPage />
+    <Router>
+      <Route path='/' component={NavBar} />
+      <Route exact path='/' component={Home} />
+      <Route exact path="/search" component={SearchPage} />
+      <Route exact path="/movie/:movieId" component={MovieInfo} />
+      <Route path='/' component={Footer} />
+     </Router>  
   </div>
   )
 }

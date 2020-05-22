@@ -54,7 +54,12 @@ nav .right{
   right: 0px;
 }
 
-
+Footer {
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+}
 
 .nav-wrapper form{
   margin: auto;
@@ -112,4 +117,41 @@ nav .right .imgProfil a{
   width: 500px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.pagination {
+  width : 600px;
+  margin: 20px auto;
+}
+
+.poster {
+  width: 350px;
+  height: auto;
+  margin: 20px auto;
+}
+
+.movie-list {
+  font-size: 20px;
+  color: #14122c;
+}
+
+.movie-title {
+  font-size: 42px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.production-company-logo img{
+  width : 200px;
+  height: auto;
+}
+
+.production-company {
+  display: inline-block;
+  margin: auto 5px;
+}
+
+.production-company-name {
+  font-size: 25px;
+  margin: auto auto;
+  color : #777
 }

@@ -1,19 +1,22 @@
 import React from 'react'
 import {   Link } from "react-router-dom";
+import { connect} from 'react-redux'
 
 
-export default function MovieCard(props) {
+ function MovieCard(props) {
 
   function trimDescription(desc) {
     return desc.substr(0, 50) + '...'
   }
+
+  const imagePath="https://image.tmdb.org/t/p/w500/"
   return (
 
       <div className="card">
         <div className="card-image">
-          <Link to={`movie/${props.movieId}`}>
-            <img src={props.image} />
-          </Link>
+          <a href={`movie/${props.movieId}`}>
+            <img src={`${imagePath}${props.image}`} />
+          </a>
          </div> 
           <div className="card-title">{props.title}</div>
         <div className="card-content">
@@ -21,7 +24,7 @@ export default function MovieCard(props) {
           {trimDescription(props.desc)}
         </div>
         </div>
-            
-            
   )
 }
+
+export default connect()(MovieCard)

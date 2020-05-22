@@ -1,32 +1,29 @@
 import React, { Component } from 'react'
-import config from '../config'
-import axios from 'axios'
 import MovieCard from './MovieCard'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import nowPlayingUpdate from '../actions/nowPlayingUpdate'
+import Pagination from './Pagination'
 
-export default class Home extends Component {
-  constructor() {
-    super()
-    this.state = {
-      movieList : []
-    }
+class Home extends Component {
+  state = {
+    current_page : 1,
+    posts_per_page : 20,
   }
 
   componentDidMount() {
-    const nowPlayingUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${config.APP_KEY}`;
-    axios.get(nowPlayingUrl)
-    .then(result => {
-      this.setState({
-        movieList :  result.data.results
-      })
-    })
-
+    this.props.updateNowPlayingList(this.state.current_page)
   }
+
+
   render() {
+    console.log(this.props)
     const imagePath="https://image.tmdb.org/t/p/w500/"
-    const movies = this.state.movieList.slice(0,4).map((movie, index) => {
+    if (this.props.nowPlayingList.results) {
+    const movies = this.props.nowPlayingList.results.map((movie, index) => {
       return   ( <MovieCard 
                  key={index}
-                 image = {`${imagePath}\\${movie.poster_path}`}
+                 image = {`${movie.poster_path}`}
                  title = {movie.title}
                  avg = {movie.vote_average} 
                  desc ={ movie.overview}
@@ -37,7 +34,29 @@ export default class Home extends Component {
       })
       return (
         <div className="container">
+          <h2>Now in cinemas </h2>
           {movies}
+          <Pagination current_page = {this.state.current_page} total_pages= { this.props.nowPlayingList.total_pages}/>
         </div>)
+  } else {
+    return (<h1>No Movies Found</h1>)
+  }
+  }
+ }
+
+function MapStateToProps(state) {
+  return {
+    nowPlayingList : state.nowPlayingList
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    updateNowPlayingList : nowPlayingUpdate
+
+  }, dispatch)
+
+}
+
+
+export default  connect(MapStateToProps,mapDispatchToProps)(Home)
