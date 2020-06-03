@@ -15,6 +15,7 @@ import Footer from './components/Footer';
 import MovieInfo from './components/MovieInfo'
 import SearchPage from './components/SearchPage'
 import NowPlaying from './components/NowPlaying';
+import Login from './components/Login';
 
 
 class App extends Component {
@@ -41,7 +42,8 @@ class App extends Component {
       <Route exact path='/' component={Home} />
       <Route exact path="/search" component={SearchPage} />
       <Route exact path="/movie/:movieId" component={MovieInfo} />
-      <Route path='/' component={Footer} />
+      <Route exact path="/login" component={Login} />
+    
      </Router>  
   </div>
   )

@@ -1,23 +1,20 @@
 import React from 'react'
 import searchStringUpdate from '../actions/searchStringUpdate'
-import SearchPage from './SearchPage';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import nowPlayingUpdate from '../actions/nowPlayingUpdate';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
  class NavBar extends React.Component {
 
   updateLocalState = (e) =>  {
     if ((e.key === 'Enter') && (e.target.value)){
-        console.log("this.updateLocalState")
       this.props.searchStringUpdate(e.target.value)
       this.props.history.push(`/search`)
     }
   }
 
   updateNowPlayingList = () => {
-      console.log("Updating now playing list")
       this.props.updateNowPlayingList()
   }
 
@@ -41,8 +38,8 @@ import { Link } from 'react-router-dom';
                       </div>          
                   </li>                     
                 <li><a href="sass.html" className="white-text">About</a></li>
-                <li><a href="badges.html" className="white-text">Sign up</a></li>
-                <li><a href="collapsible.html" className="white-text">Log in</a></li>
+                <li><NavLink to="/signup" className="white-text">Sign up</NavLink></li>
+                <li><NavLink to="/login" className="white-text">Log in</NavLink></li>
             </ul>
         </div>
       </nav> 

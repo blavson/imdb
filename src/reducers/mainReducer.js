@@ -1,10 +1,14 @@
 import { combineReducers } from "redux";
-import searchReducer from "./searchReducer";
+import searchStringReducer from "./searchStringReducer";
 import nowPlaying from "./nowPlayingReducer";
+import searchMovies from "./searchListReducer";
+import popularMovies from "./popularMoviesReducer";
 
 const mainReducer = combineReducers({
-  searchedMovies : searchReducer,
-  nowPlayingList : nowPlaying
+  searchString : searchStringReducer,
+  seachMovies :  searchMovies,
+  nowPlayingList : nowPlaying,
+  popularMoviesList : popularMovies
  // searchedMovies : 
 
 })

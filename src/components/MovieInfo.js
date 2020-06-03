@@ -52,7 +52,8 @@ export default class MovieInfo extends Component {
             <img className="poster" src={`${imagePath}\\${movieInfo.poster_path}`} />
         </div>
         <div className="col s7">
-        <span className="movie-title">{movieInfo.original_title} </span>
+        <span className="movie-title">{movieInfo.title} </span>
+        <span className="original-movie-title">{movieInfo.original_title} </span>
           <ul className="movie-description">
           <li className="movie-list"> Budget :  {budget ===0 ? 'Unknown' : budget + 'm' } </li>
           <li className="movie-list">Runtime : {`${runtime.hours} hour ${runtime.minutes} min`} </li>

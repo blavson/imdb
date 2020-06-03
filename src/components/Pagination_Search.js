@@ -2,18 +2,32 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import nowPlayingUpdate from '../actions/nowPlayingUpdate'
+import searchStringUpdate from '../actions/searchStringUpdate'
+import searchListUpdate from '../actions/searchListUpdate'
 
  class Pagination extends Component {
    constructor() {
      super()
      this.state = {
        pages : [],
+       search_string : '',
        current_page : 1
      }
    }
 
+
+   componentDidMount = () => {
+    this.setState({
+      current_page : this.props.current_page
+    })
+    console.log('componentDidmount-PAgination Search', this.state)
+     this.updatePaging(this.props.current_page)
+   //this.updateWithPageNum(1)
+  }
+
   updateWithPageNum = ( page_num) => {
-    this.props.updateNowPlayingList(page_num)
+    const ss = this.props.search_string_object.search_string
+    this.props.updateSearchedMovies(ss, page_num)
     this.setState({
       ...this.state,
       current_page : page_num
@@ -22,6 +36,7 @@ import nowPlayingUpdate from '../actions/nowPlayingUpdate'
   }
 
   updatePaging = (current_page) => {
+    console.log("updatePaging", current_page)
     const newState = []
     const total_pages = this.props.total_pages
     const pages_to_display = 6
@@ -52,18 +67,9 @@ import nowPlayingUpdate from '../actions/nowPlayingUpdate'
       current_page
      })
      console.log(this.state)
-
   }
-  componentDidMount = () => {
-    
-    this.setState({
-      current_page : this.props.current_page
-    })
-    console.log('componentDidmount', this.state)
-     this.updatePaging(this.state.current_page)
-   //this.updateWithPageNum(1)
 
-  }
+
 
   IncreaseCurrentPage = (inc) => {
     /*
@@ -105,11 +111,16 @@ import nowPlayingUpdate from '../actions/nowPlayingUpdate'
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    updateNowPlayingList : nowPlayingUpdate
-
+    updateSearchedMovies : searchListUpdate
   }, dispatch)
-
 }
 
+  function mapStateToProps(state) {
+    return {
+      search_string_object : state.searchString
+    }
+  }
 
-export default  connect(null,mapDispatchToProps)(Pagination)
+
+
+export default  connect(mapStateToProps,mapDispatchToProps)(Pagination)

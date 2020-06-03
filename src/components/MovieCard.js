@@ -1,6 +1,4 @@
 import React from 'react'
-import {   Link } from "react-router-dom";
-import { connect} from 'react-redux'
 
 
  function MovieCard(props) {
@@ -14,17 +12,17 @@ import { connect} from 'react-redux'
 
       <div className="card">
         <div className="card-image">
-          <a href={`movie/${props.movieId}`}>
-            <img src={`${imagePath}${props.image}`} />
+          <a href={`movie/${props.movie.id}`}>
+            <img src={`${imagePath}${props.movie.poster_path}`} alt="text"/>
           </a>
          </div> 
-          <div className="card-title">{props.title}</div>
+          <div className="card-title">{props.movie.title}</div>
         <div className="card-content">
-          {props.release_date}
-          {trimDescription(props.desc)}
+          {props.movie.release_date}
+          {trimDescription(props.movie.overview)}
         </div>
-        </div>
+      </div>
   )
 }
 
-export default connect()(MovieCard)
+export default MovieCard
